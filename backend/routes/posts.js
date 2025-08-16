@@ -77,16 +77,27 @@ router.get('/', async (req, res) => {
 // Delete a post
 router.delete('/:id', auth, async (req, res) => {
   try {
+    console.log('Delete request received for post ID:', req.params.id);
+    console.log('Authenticated user ID (req.user._id):', req.user ? req.user._id : 'Not available');
+
     const post = await Post.findById(req.params.id);
     if (!post) {
+      console.log('Post not found for ID:', req.params.id);
       return res.status(404).json({ error: 'Post not found' });
     }
+
+    console.log('Post author ID:', post.author);
+
     if (post.author.toString() !== req.user._id.toString()) {
+      console.log('Authorization failed: User trying to delete another user\'s post.');
       return res.status(403).json({ error: 'Not authorized' });
     }
-    await post.remove();
+
+    console.log('Post and user match. Proceeding with deletion.');
+    await Post.deleteOne({ _id: req.params.id });
     res.json({ message: 'Post deleted' });
   } catch (error) {
+    console.error('Error during post deletion:', error);
     res.status(500).json({ error: error.message });
   }
 });

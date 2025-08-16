@@ -18,10 +18,19 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
 
-// Error handling middleware
+// Global Error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ error: 'Something went wrong!' });
+    console.error('Global Error Handler:', err.message);
+    console.error(err.stack); // Log the full stack trace
+
+    // Check if headers have already been sent to prevent errors
+    if (res.headersSent) {
+        return next(err);
+    }
+
+    res.status(err.statusCode || 500).json({
+        error: err.message || 'Something went wrong!'
+    });
 });
 
 // Test route
