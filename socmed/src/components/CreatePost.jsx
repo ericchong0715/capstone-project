@@ -11,7 +11,7 @@ export default function CreatePost({ onPostCreated, parentPostId = null }) {
     setIsLoading(true);
 
     const formData = new FormData();
-    formData.append("content", content);
+    formData.append("content", content || ""); // Ensure content is always a string
     if (image) formData.append("image", image);
     if (parentPostId) formData.append("parentPost", parentPostId);
 
@@ -31,7 +31,7 @@ export default function CreatePost({ onPostCreated, parentPostId = null }) {
       setImage(null);
     } catch (error) {
       console.error("Error creating post:", error);
-      alert("Failed to create post");
+      alert(`Failed to create post: ${error.response?.data?.error || error.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -58,7 +58,7 @@ export default function CreatePost({ onPostCreated, parentPostId = null }) {
       <button
         type="submit"
         className="btn btn-primary w-100"
-        disabled={isLoading || !content.trim()}
+        disabled={isLoading || (!content.trim() && !image)}
       >
         {isLoading ? "Posting..." : parentPostId ? "Reply" : "Post"}
       </button>

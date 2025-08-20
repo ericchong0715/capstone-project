@@ -1,8 +1,7 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* Removed margin: 0 auto; to allow full width */
+  padding: 1rem; /* Keep some padding */
+  text-align: left; /* Align text left within the root */
 }
 
 .logo {
@@ -34,9 +33,114 @@
 }
 
 .card {
-  padding: 2em;
+  background-color: #333 !important; /* Dark background for cards */
+  color: #f5f5f5 !important; /* Light text for cards */
+  border-color: #555 !important; /* Slightly lighter border for contrast */
+  padding: 1.5em; /* Slightly less padding */
+  margin-bottom: 1rem; /* Add margin bottom to separate cards */
+}
+
+.nested-reply-container {
+  background-color: #282828; /* Slightly darker background for nested replies */
+  border-left: 3px solid #ff8c00; /* Orange border for replies */
+  padding: 1rem; /* Uniform padding */
+  margin-top: 0.75rem; /* Space from parent */
+  border-radius: 0.25rem; /* Slight rounded corners */
 }
 
 .read-the-docs {
   color: #888;
+}
+
+.form-control {
+  background-color: #333; /* Darker background for form inputs */
+  color: #f5f5f5; /* Light text for form inputs */
+  border-color: #555; /* Border for form inputs */
+}
+
+.form-control::placeholder {
+  color: #bbb; /* Bright enough placeholder text */
+}
+
+.text-muted {
+  color: #aaa !important; /* Ensure muted text is visible in dark mode */
+}
+
+.btn-primary {
+  background-color: #ff8c00 !important; /* Orange button background */
+  border-color: #ff8c00 !important; /* Orange button border */
+  color: #fff !important; /* White text for primary button */
+}
+
+.btn-primary:hover {
+  background-color: #ffa500 !important; /* Lighter orange on hover */
+  border-color: #ffa500 !important;
+}
+
+.btn-outline-primary {
+  color: #ff8c00 !important; /* Orange text for outline button */
+  border-color: #ff8c00 !important; /* Orange border for outline button */
+}
+
+.btn-outline-primary:hover {
+  background-color: #ff8c00 !important; /* Orange background on hover */
+  color: #fff !important; /* White text on hover */
+}
+
+.btn-outline-danger {
+  color: #dc3545 !important; /* Red for danger button */
+  border-color: #dc3545 !important;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+}
+
+.navbar,
+.bg-body-tertiary {
+  background-color: #212121 !important; /* Dark grey background for Navbar */
+  border-bottom: 1px solid #333 !important; /* Darker border for separation */
+  position: relative; /* Needed for absolute positioning of brand */
+  padding-top: 0.75rem; /* Add padding to the top */
+  padding-bottom: 0.75rem; /* Add padding to the bottom */
+}
+
+.navbar-brand {
+  color: #ff8c00 !important; /* Orange for Navbar brand */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%; /* Center vertically */
+  transform: translate(-50%, -50%); /* Adjust for vertical centering */
+}
+
+.nav-link,
+.dropdown-toggle {
+  color: #ff8c00 !important; /* Orange for Navbar links */
+}
+
+.dropdown-menu {
+  background-color: #333 !important; /* Dark background for dropdown menu */
+  border-color: #555 !important; /* Darker border for dropdown */
+}
+
+.dropdown-item {
+  color: #f5f5f5 !important; /* Light text for dropdown items */
+}
+
+.dropdown-item:hover {
+  background-color: #444 !important; /* Slightly lighter background on hover */
+  color: #ff8c00 !important; /* Orange text on hover */
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 0.5rem; /* Further reduce padding on smaller screens */
+  }
+
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }

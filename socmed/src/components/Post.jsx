@@ -23,12 +23,12 @@ export default function Post({ post, onReplyCreated, onDeletePost }) {
     <div className="card mb-3">
       <div className="card-body">
         <h6 className="card-subtitle mb-2 text-muted">
-          {post.author.name} · {new Date(post.createdAt).toLocaleString()}
+          {(post.author && post.author.name) ? post.author.name : "Unknown User"} · {new Date(post.createdAt).toLocaleString()}
         </h6>
         <p className="card-text">{post.content}</p>
         {post.image && (
           <img 
-            src={`http://localhost:3000${post.image}`} 
+            src={`${api.defaults.baseURL}${post.image}`} 
             alt="Post attachment" 
             className="img-fluid mb-2 rounded"
             style={{ maxHeight: '300px', objectFit: 'contain' }}
@@ -41,7 +41,7 @@ export default function Post({ post, onReplyCreated, onDeletePost }) {
           >
             {showReplyForm ? 'Cancel Reply' : 'Reply'}
           </button>
-          {user && user.id === post.author._id && (
+          {user && post.author && user.id === post.author._id && (
             <button
               className="btn btn-sm btn-outline-danger"
               onClick={handleDelete}
@@ -62,14 +62,16 @@ export default function Post({ post, onReplyCreated, onDeletePost }) {
           </div>
         )}
         {post.replies?.length > 0 && (
-          <div className="ms-4 mt-3 border-start ps-3">
+          <div className="nested-reply-container p-3 my-2">
             {post.replies.map(reply => (
-              <Post
-                key={reply._id}
-                post={reply}
-                onReplyCreated={onReplyCreated}
-                onDeletePost={onDeletePost}
-              />
+              (reply && reply._id) ? (
+                <Post
+                  key={reply._id}
+                  post={reply}
+                  onReplyCreated={onReplyCreated}
+                  onDeletePost={onDeletePost}
+                />
+              ) : null
             ))}
           </div>
         )}

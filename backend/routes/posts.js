@@ -33,12 +33,29 @@ const upload = multer({
 // Create a post
 router.post('/', auth, upload.single('image'), async (req, res) => {
   try {
+    const { content, parentPost } = req.body;
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
+
+    console.log('Received post creation request:');
+    console.log('Content:', content);
+    console.log('Image file:', req.file);
+    console.log('Parent Post ID:', parentPost);
+
+    console.log('Mongoose Post Schema - content required:', Post.schema.path('content').isRequired); // IMPORTANT: Check schema status
+
+    // Validate that either content or an image is provided
+    if (!content && !image) {
+      return res.status(400).json({ error: 'Post must contain either text or an image.' });
+    }
+
     const post = new Post({
-      content: req.body.content,
+      content: content,
       author: req.user._id,
-      parentPost: req.body.parentPost || null,
-      image: req.file ? `/uploads/${req.file.filename}` : null
+      parentPost: parentPost || null,
+      image: image,
     });
+
+    console.log('Post object before saving:', post); // Log the post object being saved
 
     await post.save();
 

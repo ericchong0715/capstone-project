@@ -35,23 +35,38 @@ export default function Feed() {
   };
 
   const handleDeletePost = (deletedPostId) => {
-    setPosts((prevPosts) =>
-      prevPosts.filter((post) => post._id !== deletedPostId)
-    );
+    const removePostOrReply = (postsArr) => {
+      return postsArr.filter(post => {
+        if (post._id === deletedPostId) {
+          return false; // This is the post/reply to delete
+        } else if (post.replies && post.replies.length > 0) {
+          // Recursively filter replies
+          post.replies = removePostOrReply(post.replies);
+        }
+        return true; // Keep this post/reply
+      });
+    };
+    setPosts(prevPosts => removePostOrReply(prevPosts));
   };
 
   const handleReplyCreated = (newReply) => {
-    setPosts((prevPosts) => {
-      return prevPosts.map((post) => {
+    const updateReplies = (postsArr) => {
+      return postsArr.map((post) => {
         if (post._id === newReply.parentPost) {
           return {
             ...post,
             replies: [newReply, ...(post.replies || [])],
           };
+        } else if (post.replies && post.replies.length > 0) {
+          return {
+            ...post,
+            replies: updateReplies(post.replies), // Recursively update nested replies
+          };
         }
         return post;
       });
-    });
+    };
+    setPosts((prevPosts) => updateReplies(prevPosts));
   };
 
   if (isLoading) {
@@ -65,7 +80,7 @@ export default function Feed() {
   }
 
   return (
-    <div className="container mt-4">
+    <div className="container-fluid mt-4 mb-5">
       <CreatePost onPostCreated={handlePostCreated} />
       {posts.map((post) => (
         <Post

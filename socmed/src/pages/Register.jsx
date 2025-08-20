@@ -26,9 +26,9 @@ export default function Register() {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-5">
-        <div className="card">
+    <div className="container-fluid mt-5">
+      <div className="row justify-content-center mt-5">
+      <div className="card col-md-6 col-lg-4">
           <div className="card-body">
             <h4 className="mb-3">Register</h4>
             <form onSubmit={onSubmit}>
@@ -68,8 +68,8 @@ export default function Register() {
               </button>
             </form>
           </div>
-        </div>
       </div>
+    </div>
     </div>
   );
 }

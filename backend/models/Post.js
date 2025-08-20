@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
   content: {
     type: String,
-    required: true
+    required: false // Allow posts without text content, e.g., image-only posts
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,

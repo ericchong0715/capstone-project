@@ -1,0 +1,14 @@
+<svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chat bubble background -->
+  <rect x="4" y="4" width="48" height="48" rx="14" fill="#2D9CDB"/>
+  <!-- Chat bubble tail -->
+  <polygon points="28,52 36,44 20,44" fill="#2D9CDB"/>
+  <!-- Network dots -->
+  <circle cx="20" cy="24" r="5" fill="#fff"/>
+  <circle cx="36" cy="24" r="5" fill="#fff"/>
+  <circle cx="28" cy="36" r="5" fill="#fff"/>
+  <!-- Connecting lines -->
+  <line x1="20" y1="24" x2="36" y2="24" stroke="#fff" stroke-width="2.5"/>
+  <line x1="20" y1="24" x2="28" y2="36" stroke="#fff" stroke-width="2.5"/>
+  <line x1="36" y1="24" x2="28" y2="36" stroke="#fff" stroke-width="2.5"/>
+</svg>
