@@ -1,6 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../state/AuthContext";
-import logo from '../assets/socmed-logo.svg';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
