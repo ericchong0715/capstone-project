@@ -9,13 +9,9 @@ const userRoutes = require('./routes/users');
 const app = express();
 
 app.use(cors({
-<<<<<<< HEAD
-  origin: ['http://localhost:5173', 'https://socmed-frontend-arcp.onrender.com', 'https://capstoneproject-socmed.netlify.app'], // Allow your frontend origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-=======
-  origin: ['http://localhost:5173', 'https://socmed-frontend-arcp.onrender.com', 'https://capstoneproject-socmed.netlify.app'],
->>>>>>> 8f9d669fef5767c32ccde46baa3856aa77ea8c9d
-  credentials: true,
+    origin: ['http://localhost:5173', 'https://socmed-frontend-arcp.onrender.com', 'https://capstoneproject-socmed.netlify.app'], // Allow your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
 }));
 app.use(express.json());
 
