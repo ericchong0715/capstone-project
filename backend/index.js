@@ -9,8 +9,7 @@ const userRoutes = require('./routes/users');
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://socmed-frontend-arcp.onrender.com'], // Allow your frontend origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: ['http://localhost:5173', 'https://socmed-frontend-arcp.onrender.com', 'https://capstoneproject-socmed.netlify.app'],
   credentials: true,
 }));
 app.use(express.json());
