@@ -10,16 +10,18 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState(""); // Add error state
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setBusy(true);
+    setError(""); // Clear previous errors
     try {
       await register(name, email, password);
       navigate("/");
     } catch (err) {
       console.error(err);
-      alert("Registration failed");
+      setError(err.response?.data?.error || "Registration failed"); // Display specific error
     } finally {
       setBusy(false);
     }
@@ -32,6 +34,11 @@ export default function Register() {
           <div className="card-body">
             <h4 className="mb-3">Register</h4>
             <form onSubmit={onSubmit}>
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
               <div className="mb-3">
                 <label className="form-label">Name</label>
                 <input
