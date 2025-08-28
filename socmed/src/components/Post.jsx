@@ -28,7 +28,7 @@ export default function Post({ post, onReplyCreated, onDeletePost }) {
         <p className="card-text">{post.content}</p>
         {post.image && (
           <img 
-            src={`${api.defaults.baseURL}${post.image}`} 
+            src={post.image} 
             alt="Post attachment" 
             className="img-fluid mb-2 rounded"
             style={{ maxHeight: '300px', objectFit: 'contain' }}
