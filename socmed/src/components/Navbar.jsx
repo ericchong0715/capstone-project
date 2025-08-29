@@ -20,6 +20,9 @@ export default function Navbar() {
           </Link>
         </div>
         {/* Right side: Collapsible menu with user/login/register */}
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
         <div id="nav" className="collapse navbar-collapse">
           <ul className="navbar-nav ms-auto"> 
             {!user && (
