@@ -19,6 +19,7 @@ export default function Navbar() {
             SocMed
           </Link>
         </div>
+        <div className="d-flex align-items-center">
         {user && (
               <li className="nav-item dropdown d-flex d-lg-none ">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -37,6 +38,7 @@ export default function Navbar() {
         <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
+        </div>
         <div id="nav" className="collapse navbar-collapse">
           <ul className="navbar-nav ms-auto"> 
             {!user && (
