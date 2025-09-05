@@ -55,3 +55,17 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.dropdown-menu-custom {
+  z-index: 1050;
+}
+
+.custom-toggler {
+  /* Remove default toggler icon */
+  background-image: none;
+  /* Add a custom dropdown arrow if desired, or just rely on Bootstrap's dropdown-toggle class */
+  /* For example, if you want a custom arrow: */
+  /* content: ">>"; */
+  /* Or use a Bootstrap class that adds a caret */
+  
+}
